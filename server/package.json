@@ -1,16 +1,14 @@
 {
   "name": "server",
   "version": "1.0.0",
-  "description": "Back-end for RPI Jammer web application",
+  "description": "Server side of web application for Raspberry PI WiFi Attacker Project",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
-    "server": "nodemon index.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Josip Seric",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.16.4",
-    "nodemon": "^1.18.5"
+    "express": "^4.16.4"
   }
 }
