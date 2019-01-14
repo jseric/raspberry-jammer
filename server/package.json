@@ -4,11 +4,13 @@
   "description": "Server side of web application for Raspberry PI WiFi Attacker Project",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js",
+    "server": "nodemon index.js"
   },
   "author": "Josip Seric",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.16.4"
+    "express": "^4.16.4",
+    "nodemon": "^1.18.9"
   }
 }
