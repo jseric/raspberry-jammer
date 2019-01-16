@@ -6,6 +6,7 @@
 // Export routes
 module.exports = app => {
 
+/*
   // Root route
   // Path: /
   // Type: GET
@@ -15,7 +16,7 @@ module.exports = app => {
       res.send("Hello world!");
     }
   );
-
+*/
   // API test route
   // Path: /api/test
   // Type: GET
