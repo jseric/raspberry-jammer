@@ -3,29 +3,56 @@
 // Date created: 14th January 2018
 // Author: Josip Seric
 
+// Module imports
+const jammer_handler = require('../attack_handlers/jammerHandler');
+
 // Export routes
 module.exports = app => {
 
-/*
-  // Root route
-  // Path: /
+  // Route to start jammer action
+  // Path: /api/jammer/start
+	// Params: {
+	// 	time_val: int,
+	//	macs: [int]
+	// }
   // Type: GET
   app.get(
-    '/',
+    '/api/jammer/start',
     (req, res) => {
-      res.send("Hello world!");
-    }
-  );
-*/
-  // API test route
-  // Path: /api/test
-  // Type: GET
-  app.get(
-    '/api/test',
-    (req, res) => {
-      res.send("Hello");
+			// TODO
+
+			if (jammer_handler.isAttackOn()) {
+				res.send("Attack is already working!!!");
+				return;
+			}
+
+			// Turn on jammer
+			// startJammer(req.query);
+
+      res.send("Jamming started!");
     }
   );
 
+	// Route to stop jammer action
+  // Path: /api/jammer/stop
+  // Type: GET
+  app.get(
+    '/api/jammer/stop',
+    (req, res) => {
+			// TODO
+      res.send("Jamming stopped!");
+    }
+  );
 
-};
+	// Route to get log from jammer
+  // Path: /api/jammer/get_data
+  // Type: GET
+  app.get(
+    '/api/jammer/get_data',
+    (req, res) => {
+			// TODO
+      res.send("Jamming in proggres!");
+    }
+  );
+
+}; // module.exports = app =>
