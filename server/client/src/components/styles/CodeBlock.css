@@ -1,0 +1,11 @@
+.console-output-outer-container {
+  border: 1px solid #999;
+  display: block;
+  padding: 20px;
+	margin-bottom: 10px;
+}
+
+.console-output-codetag {
+	color: black;
+	background-color: #eee;
+}

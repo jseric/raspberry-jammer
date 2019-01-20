@@ -7,42 +7,14 @@
 import React, { Component } from 'react';
 import { Jumbotron, Button } from 'react-bootstrap';
 
+import CodeBlock from './CodeBlock';
+
 import './styles/Dashboard.css';
 
-let console_output = [
-  '#include <stdio.h>',
-  '#include <stdlib.h>',
-  'int main(void)',
-  '{',
-  '  int a = 0;',
-  '  int b = 0;',
-  '  printf("Hello world\n");',
-  '  return 0;',
-  '}'
-];
+
 
 // Dashboard component
 class Dashboard extends Component {
-
-  getConsoleLog() {
-		// TODO
-
-    return (
-      <div className="console-output-outer-container" >
-        { console_output.map(function(line, index){
-	        return (
-						<div className="console-output-inner-container" >
-							<code className="console-output-codetag" >
-							 { line }
-						 </code>
-					 		<br>
-							</br>
-						</div>);
-	      	}) }
-      </div>
-    ); // return
-  } // getConsoleLog()
-
   render() {
 		return (
 			<div>
@@ -71,7 +43,7 @@ class Dashboard extends Component {
             </Button>
           </p>
 
-          { this.getConsoleLog() }
+          <CodeBlock />
 
           <img src="./img/home_hacker.jpg" alt="Hacker" className="img-class" />
         </Jumbotron>
