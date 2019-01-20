@@ -10,6 +10,9 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import Header from './Header';
 import Footer from './Footer';
 import Home	  from './Home';
+
+import './styles/App.css';
+
 const Dashboard = () => <h1>Dashboard</h1>;
 
 // App component
