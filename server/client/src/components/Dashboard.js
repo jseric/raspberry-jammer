@@ -26,6 +26,7 @@ class Dashboard extends Component {
 	} // constructor()
 
 	startAttack() {
+		// TODO
 		if (this.state.isAttackRunning) {
 			console.log("Already running");
 			return;
@@ -44,7 +45,6 @@ class Dashboard extends Component {
 
 	stopAttack() {
 		if (!this.state.isAttackRunning) {
-			console.log("Not running");
 			return;
 		}
 
@@ -54,7 +54,7 @@ class Dashboard extends Component {
 
 		let res;
 		axios.get('/api/jammer/stop')
-    	.then(response => res = response);
+    	.then(response => console.log(response));
 	} // stopAttack()
 
   render() {

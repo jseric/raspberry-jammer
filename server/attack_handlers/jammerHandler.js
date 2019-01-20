@@ -35,21 +35,12 @@ module.exports = {
 	}, // isAttackOn: ()
 
 	// Start jamming attack
-	startJammer: (data) => {
+	startJammer: () => {
+		// TODO
+
 		// Check the running flag
 		if (isRunning)
 			return;
-
-		// Check if params are present
-		if (typeof data.time_val == 'undefined' ||
-				typeof data.macs 	   == 'undefined')
-		  return;
-
-		// TODO
-		let jammerScriptArgs = [
-			jammerScriptPath,
-			'-a ' + data.macs
-		];
 
 		// Set the running flag to true
 		isRunning = true;
@@ -65,7 +56,7 @@ module.exports = {
 			}
 		); // jammerScript.spawn
 
-	}, // startJammer: (data)
+	}, // startJammer: ()
 
 	// End jamming attack
 	stopJammer: () => {
@@ -77,6 +68,8 @@ module.exports = {
 	}, // stopJammer: ()
 
 	getJammingLog: () => {
+		// TODO
+
 		/*if (!isRunning)
 			return;*/
 

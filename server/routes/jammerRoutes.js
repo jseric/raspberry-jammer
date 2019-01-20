@@ -11,9 +11,6 @@ module.exports = app => {
 
   // Route to start jammer action
   // Path: /api/jammer/start
-	// Params: {
-	// 	time_val: int,
-	//	macs: [int]
 	// }
   // Type: GET
   app.get(
@@ -40,8 +37,13 @@ module.exports = app => {
   app.get(
     '/api/jammer/stop',
     (req, res) => {
-			// TODO
-      res.send("Jamming stopped!");
+			if (!jammer_handler.isAttackOn()) {
+				res.send("attack_not_in_progress");
+				return;
+			}
+
+			jammer_handler.stopJammer();
+      res.send("jamming_stopped");
     }
   );
 
