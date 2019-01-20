@@ -9,8 +9,8 @@ import { BrowserRouter, Route } from 'react-router-dom';
 
 
 // Components
-const Header 	  = () => <h1>Hello</h1>;
-const Footer 	  = () => <h1>Footer</h1>;
+import Header from './Header';
+import Footer from './Footer';
 const Home		  = () => <h1>Home</h1>;
 const Dashboard = () => <h1>Dashboard</h1>;
 
@@ -26,9 +26,9 @@ class App extends Component {
 						<Route exact path="/"
 	                 component ={ Home } />
 
-						<Route path="/Dashboard"
+						<Route path="/dashboard"
 									 component={ Dashboard } />
-									 
+
 						<Footer />
 					</div>
 
