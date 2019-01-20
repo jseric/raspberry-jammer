@@ -24,7 +24,7 @@ class Home extends Component {
           <img src="./img/home_hacker.jpg" alt="Hacker" className="img-class" />
 
           <p>
-            <Button bsStyle="primary">Go to attack menu</Button>
+            <Button bsStyle="primary" href="/dashboard" >Go to attack menu</Button>
           </p>
         </Jumbotron>
       </div>
