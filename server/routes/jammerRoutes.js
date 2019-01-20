@@ -20,7 +20,8 @@ module.exports = app => {
     '/api/jammer/start',
     (req, res) => {
 			// TODO
-
+			res.send("Started");
+			/*
 			if (jammer_handler.isAttackOn()) {
 				res.send("Attack is already working!!!");
 				return;
@@ -29,7 +30,7 @@ module.exports = app => {
 			// Turn on jammer
 			// startJammer(req.query);
 
-      res.send("Jamming started!");
+      res.send("Jamming started!");*/
     }
   );
 
@@ -50,13 +51,7 @@ module.exports = app => {
   app.get(
     '/api/jammer/get_data',
     (req, res) => {
-			// TODO
-
 			let target = jammer_handler.getJammingLog();
-
-			/*for (let i = 0; i < target.length; i++)
-				console.log(target[i]);*/
-
       res.json(target);
     }
   );

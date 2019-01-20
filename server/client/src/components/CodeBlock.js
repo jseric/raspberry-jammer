@@ -5,46 +5,70 @@
 
 // Import modules
 import React, { Component } from 'react';
+import axios from 'axios';
 
 import './styles/CodeBlock.css';
 
-let console_output = [
-  '#include <stdio.h>',
-  '#include <stdlib.h>',
-  'int main(void)',
-  '{',
-  '  int a = 0;',
-  '  int b = 0;',
-  '  printf("Hello world\n");',
-  '  return 0;',
-  '}'
-];
+const console_log_fetch_interval = 5000; // 5 seconds
 
 // CodeBlock component
 class CodeBlock extends Component {
-  getConsoleLog() {
-		// TODO
+	constructor() {
+		super();
+
+		this.state = {
+			console_output: [
+				"No data yet"
+			]
+		};
+	}
+
+	componentDidMount() {
+  	this.interval = setInterval(
+			() => {
+				this.getConsoleLog()
+			},
+			console_log_fetch_interval);
+  } // componentDidMount()
+
+	componentWillUnmount() {
+	  clearInterval(this.interval);
+	} // componentWillUnmount()
+
+	async getConsoleLog() {
+		await axios.get('/api/jammer/get_data')
+    	.then(response =>
+				this.setState({
+					console_output: response.data.data
+				})
+			);
+	} // async getConsoleLog()
+
+  getData() {
+		if (!this.props.isAttackRunning)
+			return;
 
     return (
       <div>
-        { console_output.map(function(line, index) {
-	        return (
-						<div className="console-output-inner-container" >
-							<code className="console-output-codetag" >
-							  { line }
-						  </code>
-					 		<br>
-							</br>
-						</div>);
+        { this.state.console_output.map(function(line, index) {
+        		return (
+							<div className="console-output-inner-container"
+									 key={ index }>
+								<code className="console-output-codetag" >
+								  { line }
+							  </code>
+						 		<br>
+								</br>
+							</div>);
 	      }) }
       </div>
     ); // return
-  } // getConsoleLog()
+  } // getData()
 
   render() {
     return (
       <div className="console-output-outer-container" >
-        { this.getConsoleLog() }
+        { this.getData() }
       </div>
     ); // return
   } // render()
