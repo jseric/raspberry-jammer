@@ -6,6 +6,21 @@
 // Import modules
 const spawn = require('child_process').spawn;
 
+// Dummy data
+let console_output = {
+	"data" : [
+		"#include <stdio.h>",
+		"#include <stdlib.h>",
+		"int main(void)",
+		"{",
+		"  int a = 0;",
+		"  int b = 0;",
+		"  printf(\"Hello world\n\");",
+		"  return 0;",
+		"}"
+	]
+};
+
 let isRunning = false;
 var jammerScript;
 
@@ -17,7 +32,7 @@ module.exports = {
 	// Check if an attack is running
 	isAttackOn: () => {
 		return isRunning;
-	},
+	}, // isAttackOn: ()
 
 	// Start jamming attack
 	startJammer: (data) => {
@@ -59,13 +74,15 @@ module.exports = {
 
 		isRunning = false;
 		jammerScript.kill();
-	},
+	}, // stopJammer: ()
 
 	getJammingLog: () => {
-		if (!isRunning)
-			return;
+		/*if (!isRunning)
+			return;*/
+
+		return console_output;
 
 		// TODO
-	}
+	} // getJammingLog: ()
 
 }; // module.exports

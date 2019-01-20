@@ -51,7 +51,13 @@ module.exports = app => {
     '/api/jammer/get_data',
     (req, res) => {
 			// TODO
-      res.send("Jamming in proggres!");
+
+			let target = jammer_handler.getJammingLog();
+
+			/*for (let i = 0; i < target.length; i++)
+				console.log(target[i]);*/
+
+      res.json(target);
     }
   );
 
