@@ -3,3 +3,8 @@
   font-weight: 400;
   padding-left: 10px;
 }
+
+.header-container :hover {
+	color: white;
+	text-decoration: none;
+}
