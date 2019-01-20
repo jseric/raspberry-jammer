@@ -7,11 +7,9 @@
 import React, { Component } 	  from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
 
-
-// Components
 import Header from './Header';
 import Footer from './Footer';
-const Home		  = () => <h1>Home</h1>;
+import Home	  from './Home';
 const Dashboard = () => <h1>Dashboard</h1>;
 
 // App component

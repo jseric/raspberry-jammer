@@ -14,7 +14,7 @@ class Footer extends Component {
     return (
       <div className="footer-div" >
         <p>
-          Made with ❤️ and ReactJS by Josip Šerić & Joško Zorić in 2019
+          Made with <span role="img" aria-label="love">❤️</span> and ReactJS by Josip Šerić & Joško Zorić in 2019
         </p>
       </div>
     ); // return
