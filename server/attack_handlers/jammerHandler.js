@@ -8,18 +8,10 @@ const spawn = require('child_process').spawn;
 
 // Dummy data
 let console_output = {
-	"data" : [
-		"#include <stdio.h>",
-		"#include <stdlib.h>",
-		"int main(void)",
-		"{",
-		"  int a = 0;",
-		"  int b = 0;",
-		"  printf(\"Hello world\n\");",
-		"  return 0;",
-		"}"
-	]
+	"data" : []
 };
+
+let console_output_lines_counter = 0;
 
 let isRunning = true;
 var jammerScript;
@@ -36,8 +28,6 @@ module.exports = {
 
 	// Start jamming attack
 	startJammer: () => {
-		// TODO
-
 		// Check the running flag
 		if (isRunning)
 			return;
@@ -46,33 +36,45 @@ module.exports = {
 		isRunning = true;
 
 		// Start attack script
-		jammerScript.spawn(
+		jammerScript = spawn(
 			'python',
 			[
-				// Args here
+				'attackScript.py'
 			],
 			{
-				// Options here
+				uid: 0,
+				gid: 0
 			}
-		); // jammerScript.spawn
+		);
 
+		let output = '';
+		jammerScript.stdout.on(
+			'data', function(data) {
+				output += data;
+				console.log(output);
+				console_output.data[console_output_lines_counter] = '';
+    		console_output.data[console_output_lines_counter] += data;
+				console_output_lines_counter++;
+			} // function(data)
+		); // jammerScript.stdout.on
 	}, // startJammer: ()
 
 	// End jamming attack
 	stopJammer: () => {
-		// TODO
 		if (!isRunning)
 			return;
 
 		isRunning = false;
-		// jammerScript.kill();
+		jammerScript.kill();
 	}, // stopJammer: ()
 
 	getJammingLog: () => {
 		// TODO
 
-		/*if (!isRunning)
-			return;*/
+		/*
+		if (!isRunning)
+			return;
+		*/
 
 		return console_output;
 

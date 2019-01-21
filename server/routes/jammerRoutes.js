@@ -15,16 +15,13 @@ module.exports = app => {
   app.get(
     '/api/jammer/start',
     (req, res) => {
-			// TODO
-
 			if (jammer_handler.isAttackOn()) {
 				res.send("warning__attack_already_in_progress");
 				return;
 			}
-			/*
+
 			// Turn on jammer
-			// startJammer(req.query);
-			*/
+			jammer_handler.startJammer();
 
       res.send("jamming_started");
     }
@@ -52,7 +49,17 @@ module.exports = app => {
   app.get(
     '/api/jammer/get_data',
     (req, res) => {
+			if (jammer_handler.isAttackOn()) {
+				res.send("warning__attack_not_in_progress");
+				return;
+			}
+
 			let target = jammer_handler.getJammingLog();
+			if (target === 'attack_not_in_progress') {
+				res.send("warning__attack_not_in_progress");
+				return;
+			}
+			
       res.json(target);
     }
   );

@@ -69,7 +69,7 @@ class Dashboard extends Component {
 
 	async startAttack() {
 		if (this.state.isAttackRunning) {
-			console.log("warning:attack_already_in_progress");
+			console.log("client_warning:attack_already_in_progress");
 			return;
 		}
 
@@ -82,7 +82,7 @@ class Dashboard extends Component {
     	.then(response => res = response.data);
 
 		if (res === 'attack_not_in_progress')
-			console.log('warning:attack_already_in_progress');
+			console.log('server_warning:attack_already_in_progress');
 		else if (res === 'jamming_started')
 			console.log('jamming_started');
 		else
@@ -91,7 +91,7 @@ class Dashboard extends Component {
 
 	async stopAttack() {
 		if (!this.state.isAttackRunning) {
-			console.log('warning:attack_not_in_progress');
+			console.log('client_warning:attack_not_in_progress');
 			return;
 		}
 
@@ -104,7 +104,7 @@ class Dashboard extends Component {
     	.then(response => res = response.data);
 
 		if (res === 'warning__attack_not_in_progress')
-			console.log('warning:attack_not_in_progress');
+			console.log('server_warning:attack_not_in_progress');
 		else if (res === 'jamming_stopped')
 			console.log('jamming_stopped');
 		else
