@@ -60,11 +60,12 @@ module.exports = {
 
 	// End jamming attack
 	stopJammer: () => {
+		// TODO
 		if (!isRunning)
 			return;
 
 		isRunning = false;
-		jammerScript.kill();
+		// jammerScript.kill();
 	}, // stopJammer: ()
 
 	getJammingLog: () => {

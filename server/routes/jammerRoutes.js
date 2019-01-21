@@ -11,7 +11,6 @@ module.exports = app => {
 
   // Route to start jammer action
   // Path: /api/jammer/start
-	// }
   // Type: GET
   app.get(
     '/api/jammer/start',

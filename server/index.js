@@ -13,6 +13,20 @@ const PORT = 5000;
 // Import routes
 require('./routes/jammerRoutes')(app);
 
+// Redirect unhandled requests to client
+const client_base_url = 'http://localhost:3000';
+
+// Redirection routes for client
+// Path: /*
+// Note: every route that is not previously defined
+// Type: GET
+app.get(
+	'*',
+	(req,res) => {
+		const targetUrl = client_base_url + req.originalUrl;
+  	res.redirect(targetUrl);
+	}
+);
 
 // Start web server
 app.listen(PORT);
