@@ -25,41 +25,47 @@ class Dashboard extends Component {
 		};
 	} // constructor()
 
-	renderButtons() {
-		let startButtonStyle = '';
-		let stopButtonStyle  = '';
-
-		let startButtonClassName = 'dashboard-button';
-		let stopButtonClassName  = 'dashboard-button';
-
-		if (this.state.isAttackRunning) {
-			stopButtonStyle = 'danger';
-			startButtonClassName += ' dashboard-button-off';
-		}
-		else {
-			startButtonStyle = 'success';
-			stopButtonClassName += ' dashboard-button-off';
-		}
-
-
-		return (
-			<p>
-				<Button bsStyle={ startButtonStyle }
-								href="#"
-								className={ startButtonClassName }
+	renderStartButton() {
+		if (this.state.isAttackRunning) // Attack is running
+			return (
+				<Button href="#"
+								className="dashboard-button dashboard-button-off"
 								onClick={ this.startAttack } >
 					START
 				</Button>
+			); // return
 
-				<Button bsStyle={ stopButtonStyle }
+		// Attack is not running
+		return (
+			<Button bsStyle="success"
+							href="#"
+							className="dashboard-button"
+							onClick={ this.startAttack } >
+				START
+			</Button>
+		); // return
+	} // renderStartButton()
+
+	renderStopButton() {
+		if (this.state.isAttackRunning) // Attack is running
+			return (
+				<Button bsStyle="danger"
 								href="#"
-								className={ stopButtonClassName }
+								className="dashboard-button"
 								onClick={ this.stopAttack } >
 					STOP
 				</Button>
-			</p>
+			); // return
+
+		// Attack is not running
+		return (
+			<Button href="#"
+							className="dashboard-button dashboard-button-off"
+							onClick={ this.stopAttack } >
+				STOP
+			</Button>
 		); // return
-	} // renderButtons()
+	} // renderStopButton()
 
 	async startAttack() {
 		if (this.state.isAttackRunning) {
@@ -119,7 +125,10 @@ class Dashboard extends Component {
             To end the attack, press the 'STOP' button.
           </p>
 
-					{ this.renderButtons() }
+					<p>
+            { this.renderStartButton() }
+            { this.renderStopButton()  }
+          </p>
 
           <CodeBlock isAttackRunning={this.state.isAttackRunning}/>
 
