@@ -21,7 +21,7 @@ let console_output = {
 	]
 };
 
-let isRunning = false;
+let isRunning = true;
 var jammerScript;
 
 const jammerScriptPath 	  = 'wifijammer';

@@ -25,10 +25,45 @@ class Dashboard extends Component {
 		};
 	} // constructor()
 
-	startAttack() {
-		// TODO
+	renderButtons() {
+		let startButtonStyle = '';
+		let stopButtonStyle  = '';
+
+		let startButtonClassName = 'dashboard-button';
+		let stopButtonClassName  = 'dashboard-button';
+
 		if (this.state.isAttackRunning) {
-			console.log("Already running");
+			stopButtonStyle = 'danger';
+			startButtonClassName += ' dashboard-button-off';
+		}
+		else {
+			startButtonStyle = 'success';
+			stopButtonClassName += ' dashboard-button-off';
+		}
+
+
+		return (
+			<p>
+				<Button bsStyle={ startButtonStyle }
+								href="#"
+								className={ startButtonClassName }
+								onClick={ this.startAttack } >
+					START
+				</Button>
+
+				<Button bsStyle={ stopButtonStyle }
+								href="#"
+								className={ stopButtonClassName }
+								onClick={ this.stopAttack } >
+					STOP
+				</Button>
+			</p>
+		); // return
+	} // renderButtons()
+
+	async startAttack() {
+		if (this.state.isAttackRunning) {
+			console.log("warning:attack_already_in_progress");
 			return;
 		}
 
@@ -37,14 +72,20 @@ class Dashboard extends Component {
 		});
 
 		let res;
-		axios.get('/api/jammer/start')
-    	.then(response => res = response);
+		await axios.get('/api/jammer/start')
+    	.then(response => res = response.data);
 
-		console.log("Started");
+		if (res === 'attack_not_in_progress')
+			console.log('warning:attack_already_in_progress');
+		else if (res === 'jamming_started')
+			console.log('jamming_started');
+		else
+			console.log('error:unknown_response');
 	} // startAttack()
 
-	stopAttack() {
+	async stopAttack() {
 		if (!this.state.isAttackRunning) {
+			console.log('warning:attack_not_in_progress');
 			return;
 		}
 
@@ -53,8 +94,15 @@ class Dashboard extends Component {
 		});
 
 		let res;
-		axios.get('/api/jammer/stop')
-    	.then(response => console.log(response));
+		await axios.get('/api/jammer/stop')
+    	.then(response => res = response.data);
+
+		if (res === 'warning__attack_not_in_progress')
+			console.log('warning:attack_not_in_progress');
+		else if (res === 'jamming_stopped')
+			console.log('jamming_stopped');
+		else
+			console.log('error:unknown_response');
 	} // stopAttack()
 
   render() {
@@ -71,21 +119,7 @@ class Dashboard extends Component {
             To end the attack, press the 'STOP' button.
           </p>
 
-          <p>
-            <Button bsStyle="success"
-                    href="#"
-                    className="dashboard-button"
-										onClick={ this.startAttack } >
-              START
-            </Button>
-
-            <Button bsStyle="danger"
-                    href="#"
-                    className="dashboard-button"
-										onClick={ this.stopAttack } >
-              STOP
-            </Button>
-          </p>
+					{ this.renderButtons() }
 
           <CodeBlock isAttackRunning={this.state.isAttackRunning}/>
 

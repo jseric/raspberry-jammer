@@ -17,17 +17,17 @@ module.exports = app => {
     '/api/jammer/start',
     (req, res) => {
 			// TODO
-			res.send("Started");
-			/*
+
 			if (jammer_handler.isAttackOn()) {
-				res.send("Attack is already working!!!");
+				res.send("warning__attack_already_in_progress");
 				return;
 			}
-
+			/*
 			// Turn on jammer
 			// startJammer(req.query);
+			*/
 
-      res.send("Jamming started!");*/
+      res.send("jamming_started");
     }
   );
 
@@ -38,7 +38,7 @@ module.exports = app => {
     '/api/jammer/stop',
     (req, res) => {
 			if (!jammer_handler.isAttackOn()) {
-				res.send("attack_not_in_progress");
+				res.send("warning__attack_not_in_progress");
 				return;
 			}
 
