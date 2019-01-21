@@ -36,12 +36,16 @@ class CodeBlock extends Component {
 	} // componentWillUnmount()
 
 	async getConsoleLog() {
+		let res;
 		await axios.get('/api/jammer/get_data')
-    	.then(response =>
-				this.setState({
-					console_output: response.data.data
-				})
-			);
+    	.then(response => res = response.data );
+
+		if (res === 'warning__attack_not_in_progress')
+			return;
+
+		this.setState({
+			console_output: res.data
+		});
 	} // async getConsoleLog()
 
   getData() {
