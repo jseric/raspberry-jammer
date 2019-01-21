@@ -10,11 +10,19 @@ const express = require('express');
 const app = express();
 const PORT = 5000;
 
+const is_rpi = false;
+
 // Import routes
 require('./routes/jammerRoutes')(app);
 
 // Redirect unhandled requests to client
-const client_base_url = 'http://localhost:3000';
+
+let client_base_url = '';
+
+if (is_rpi)
+	client_base_url = 'http://localhost:3000';
+else
+	client_base_url = 'http://10.3.141.1:3000';
 
 // Redirection routes for client
 // Path: /*
