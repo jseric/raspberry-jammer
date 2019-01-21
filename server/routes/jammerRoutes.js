@@ -15,6 +15,9 @@ module.exports = app => {
   app.get(
     '/api/jammer/start',
     (req, res) => {
+
+			console.log("Called /api/jammer/start");
+
 			if (jammer_handler.isAttackOn()) {
 				res.send("warning__attack_already_in_progress");
 				return;
@@ -33,6 +36,8 @@ module.exports = app => {
   app.get(
     '/api/jammer/stop',
     (req, res) => {
+			console.log("Called /api/jammer/stop");
+
 			if (!jammer_handler.isAttackOn()) {
 				res.send("warning__attack_not_in_progress");
 				return;
@@ -49,6 +54,8 @@ module.exports = app => {
   app.get(
     '/api/jammer/get_data',
     (req, res) => {
+			console.log("Called /api/jammer/get_data");
+
 			if (jammer_handler.isAttackOn()) {
 				res.send("warning__attack_not_in_progress");
 				return;
@@ -59,7 +66,7 @@ module.exports = app => {
 				res.send("warning__attack_not_in_progress");
 				return;
 			}
-			
+
       res.json(target);
     }
   );
