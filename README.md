@@ -34,5 +34,5 @@ npm install
 
 - Run application
 ```Bash
-sudo npm run dev # In raspberry-jammer/server
+sudo npm run dev # In raspberry-jammer/server directory
 ```
