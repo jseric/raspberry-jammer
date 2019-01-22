@@ -14,7 +14,7 @@ let console_output = {
 let isRunning = false;
 var jammerScript;
 
-const is_rpi = false;
+const is_rpi = true;
 let pythonVersion = is_rpi ? 'python' : 'python3';
 let attackScript  = is_rpi ? 'attackScript.py' : 'attackScript_macbook.py';
 

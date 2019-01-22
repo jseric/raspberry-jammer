@@ -10,7 +10,7 @@ const express = require('express');
 const app = express();
 const PORT = 5000;
 
-const is_rpi = false;
+const is_rpi = true;
 
 // Import routes
 require('./routes/jammerRoutes')(app);
