@@ -6,6 +6,8 @@
 // Import modules
 const spawn = require('child_process').spawn;
 
+const keys = require('../config/keys');
+
 // Dummy data
 let console_output = {
 	"data" : []
@@ -14,9 +16,8 @@ let console_output = {
 let isRunning = false;
 var jammerScript;
 
-const is_rpi = true;
-let pythonVersion = is_rpi ? 'python' : 'python3';
-let attackScript  = is_rpi ? 'attackScript.py' : 'attackScript_macbook.py';
+let pythonVersion = keys.isRPI ? 'python' : 'python3';
+let attackScript  = keys.isRPI ? 'attackScript.py' : 'attackScript_macbook.py';
 
 module.exports = {
 
