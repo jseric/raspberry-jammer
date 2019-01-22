@@ -60,10 +60,7 @@ module.exports = {
 				let line_start = 0;
 				let line_end = 0;
 
-<<<<<<< HEAD
 				// Add break lines
-=======
->>>>>>> 43d21677f46a548882e1105bfd11c50cb9586e2d
 				for (line_end = 0; line_end < output.length; line_end++) {
 					if (output[line_end] == '[') {
 						let log_lines = console_output.data.length;
@@ -75,7 +72,6 @@ module.exports = {
 					}
 				}
 
-<<<<<<< HEAD
 				// Add remaining data
 				let log_lines = console_output.data.length;
 
@@ -88,12 +84,6 @@ module.exports = {
 				let log_lines = console_output.data.length;
 
 				console_output.data.push('stdout: ');
-=======
-				/*
-				let log_lines = console_output.data.length;
-
-				console_output.data.push('stdout: ');
->>>>>>> 43d21677f46a548882e1105bfd11c50cb9586e2d
     		console_output.data[log_lines] += data;
 				*/
 			} // function(data)
@@ -108,22 +98,18 @@ module.exports = {
 				let line_start = 0;
 				let line_end = 0;
 
-<<<<<<< HEAD
 				// Add break lines
-=======
->>>>>>> 43d21677f46a548882e1105bfd11c50cb9586e2d
 				for (line_end = 0; line_end < output.length; line_end++) {
 					if (output[line_end] == '[') {
 						let log_lines = console_output.data.length;
 
 						console_output.data.push('stderr: ');
 		    		console_output.data[log_lines] += output.substr(line_start, line_end - line_start);
-<<<<<<< HEAD
 
 						line_start = line_end;
 					}
 				}
-				
+
 				// Add remaining data
 				let log_lines = console_output.data.length;
 
@@ -132,12 +118,6 @@ module.exports = {
 
 				line_start = line_end;
 
-=======
-
-						line_start = line_end;
-					}
-				}
->>>>>>> 43d21677f46a548882e1105bfd11c50cb9586e2d
 			} // function(data)
 		); // jammerScript.stdout.on
 	}, // startJammer: ()
