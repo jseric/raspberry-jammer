@@ -15,7 +15,7 @@ This is an application for attacking WiFi networks using Raspberry Pi (RPI) 3. T
 - [Python](https://www.python.org/) & [Scapy](https://scapy.readthedocs.io/en/latest/index.html) (Both should come preinstalled on Raspbian OS)
 - [NPM & NodeJS](https://www.instructables.com/id/Install-Nodejs-and-Npm-on-Raspberry-Pi/)
 - [Generate new SSH key and add it to your GitHub account](https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/#platform-linux)
-- [RaspAP](https://github.com/billz/raspap-webgui) (Installation notes are on link)
+- [RaspAP](https://github.com/billz/raspap-webgui) (Installation notes are on link, see Quick Installer section)
 
 ## How to download and run Raspberry Pi WiFi Attacker
 - Clone the repository
