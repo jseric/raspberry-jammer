@@ -40,6 +40,8 @@ class CodeBlock extends Component {
 		await axios.get('/api/jammer/get_data')
     	.then(response => res = response.data );
 
+		console.log(res);
+		
 		if (res === 'warning__attack_not_in_progress')
 			return;
 

@@ -11,13 +11,12 @@ let console_output = {
 	"data" : []
 };
 
-let console_output_lines_counter = 0;
-
-let isRunning = true;
+let isRunning = false;
 var jammerScript;
 
-const jammerScriptPath 	  = 'wifijammer';
-const jammerScriptOptions = {};
+const is_rpi = false;
+let pythonVersion = is_rpi ? 'python' : 'python3';
+let attackScript  = is_rpi ? 'attackScript.py' : 'attackScript_macbook.py';
 
 module.exports = {
 
@@ -35,11 +34,15 @@ module.exports = {
 		// Set the running flag to true
 		isRunning = true;
 
+		// Reset log
+		console_output.data = [];
+
+
 		// Start attack script
 		jammerScript = spawn(
-			'python',
+			pythonVersion,
 			[
-				'attackScript.py'
+				'./attack_handlers/' + attackScript
 			],
 			{
 				uid: 0,
@@ -48,13 +51,29 @@ module.exports = {
 		);
 
 		let output = '';
+
 		jammerScript.stdout.on(
 			'data', function(data) {
 				output += data;
 				console.log(output);
-				console_output.data[console_output_lines_counter] = '';
-    		console_output.data[console_output_lines_counter] += data;
-				console_output_lines_counter++;
+
+				let i = console_output.data.length;
+
+				console_output.data.push('stdout: ');
+    		console_output.data[i] += data;
+			} // function(data)
+		); // jammerScript.stdout.on
+
+
+		jammerScript.stderr.on(
+			'data', function(data) {
+				output += data;
+				console.log(output);
+
+				let i = console_output.data.length;
+
+				console_output.data.push('stderr: ');
+    		console_output.data[i] += data;
 			} // function(data)
 		); // jammerScript.stdout.on
 	}, // startJammer: ()
@@ -69,16 +88,14 @@ module.exports = {
 	}, // stopJammer: ()
 
 	getJammingLog: () => {
-		// TODO
 
-		/*
+		console.log('isRunning = ' + isRunning);
+		console.log('console_output = ' + console_output);
+
 		if (!isRunning)
-			return;
-		*/
+			return 'attack_not_in_progress';
 
 		return console_output;
-
-		// TODO
 	} // getJammingLog: ()
 
 }; // module.exports

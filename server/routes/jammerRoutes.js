@@ -56,7 +56,7 @@ module.exports = app => {
     (req, res) => {
 			console.log("Called /api/jammer/get_data");
 
-			if (jammer_handler.isAttackOn()) {
+			if (!jammer_handler.isAttackOn()) {
 				res.send("warning__attack_not_in_progress");
 				return;
 			}

@@ -19,7 +19,7 @@ require('./routes/jammerRoutes')(app);
 
 let client_base_url = '';
 
-if (is_rpi)
+if (!is_rpi)
 	client_base_url = 'http://localhost:3000';
 else
 	client_base_url = 'http://10.3.141.1:3000';
