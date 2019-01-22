@@ -50,12 +50,12 @@ module.exports = {
 			}
 		);
 
-		let output = '';
+		let output = String('');
 
 		jammerScript.stdout.on(
 			'data', function(data) {
-
-				output = data;
+				output = '';
+				output += data;
 
 				let line_start = 0;
 				let line_end = 0;
@@ -92,8 +92,8 @@ module.exports = {
 
 		jammerScript.stderr.on(
 			'data', function(data) {
-
-				output = data;
+				output = '';
+				output += data;
 
 				let line_start = 0;
 				let line_end = 0;
