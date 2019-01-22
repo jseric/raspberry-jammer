@@ -8,17 +8,10 @@
     "server": "nodemon index.js",
 		"client": "npm run start --prefix client",
 		"dev": "concurrently \"npm run server\" \"npm run client\"",
-		"forever-start-server": "forever start index.js",
-		"forever-stop-server": "forever stop index.js",
-		"forever-start-client": "npm run forever-start --prefix client",
-		"forever-stop-client": "npm run forever-stop --prefix client",
-		"forever-start-dev": "concurrently \"npm run forever-start-server\" \"npm run forever-start-client\"",
-		"forever-stop-dev": "concurrently \"npm run forever-stop-server\" \"npm run forever-stop-client\""
   },
   "author": "Josip Seric",
   "license": "ISC",
   "dependencies": {
-		"forever": "^0.15.3",
     "concurrently": "^4.1.0",
     "express": "^4.16.4",
     "nodemon": "^1.18.9"

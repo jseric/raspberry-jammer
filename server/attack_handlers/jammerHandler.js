@@ -6,8 +6,6 @@
 // Import modules
 const spawn = require('child_process').spawn;
 
-const keys = require('../config/keys');
-
 // Dummy data
 let console_output = {
 	"data" : []
@@ -16,8 +14,8 @@ let console_output = {
 let isRunning = false;
 var jammerScript;
 
-let pythonVersion = keys.isRPI ? 'python' : 'python3';
-let attackScript  = keys.isRPI ? 'attackScript.py' : 'attackScript_macbook.py';
+let pythonVersion = 'python';
+let attackScript  = 'attackScript.py';
 
 module.exports = {
 
@@ -38,7 +36,6 @@ module.exports = {
 		// Reset log
 		console_output.data = [];
 
-
 		// Start attack script
 		jammerScript = spawn(
 			pythonVersion,
@@ -46,13 +43,14 @@ module.exports = {
 				'./attack_handlers/' + attackScript
 			],
 			{
-				uid: 0,
-				gid: 0
+				uid: 0, // Root UID
+				gid: 0  // Root GID
 			}
 		);
 
 		let output = String('');
 
+		// Handle stdout messages
 		jammerScript.stdout.on(
 			'data', function(data) {
 				output = '';
@@ -65,6 +63,7 @@ module.exports = {
 		); // jammerScript.stdout.on
 
 
+		// Handle stderr messages
 		jammerScript.stderr.on(
 			'data', function(data) {
 				output = '';
@@ -79,14 +78,19 @@ module.exports = {
 
 	// End jamming attack
 	stopJammer: () => {
+		// Check the running flag
 		if (!isRunning)
 			return;
 
+		// Set the running flag to false
 		isRunning = false;
+
+		// Kill process
 		jammerScript.kill();
 	}, // stopJammer: ()
 
 	getJammingLog: () => {
+		// Check the running flag
 		if (!isRunning)
 			return 'attack_not_in_progress';
 

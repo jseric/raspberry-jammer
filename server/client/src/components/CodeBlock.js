@@ -7,8 +7,10 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
+// Import stylesheet
 import './styles/CodeBlock.css';
 
+// Interval for fetching console log
 const console_log_fetch_interval = 5000; // 5 seconds
 
 // CodeBlock component
@@ -16,6 +18,7 @@ class CodeBlock extends Component {
 	constructor() {
 		super();
 
+		// Set initial state
 		this.state = {
 			console_output: [
 				"No data yet"
@@ -24,11 +27,13 @@ class CodeBlock extends Component {
 	}
 
 	componentDidMount() {
+		// Set getConsoleLog() to be called every console_log_fetch_interval ms
   	this.interval = setInterval(
 			() => {
 				this.getConsoleLog()
 			},
-			console_log_fetch_interval);
+			console_log_fetch_interval
+		); // this.interval = setInterval
   } // componentDidMount()
 
 	componentWillUnmount() {
@@ -36,28 +41,30 @@ class CodeBlock extends Component {
 	} // componentWillUnmount()
 
 	async getConsoleLog() {
-
+		// Check if attack is alredy running
 		if (!this.props.isAttackRunning)
 			return;
 
 		let res;
+
+		// Send GET request to /api/jammer/get_data
 		await axios.get('/api/jammer/get_data')
     	.then(response => res = response.data );
-
-		console.log(res);
 
 		if (res === 'warning__attack_not_in_progress')
 			return;
 
+		// Change state
 		this.setState({
 			console_output: res.data
 		});
 	} // async getConsoleLog()
 
   getData() {
+		// Check if attack is running
 		if (!this.props.isAttackRunning)
 			return;
-
+			
     return (
       <div>
         { this.state.console_output.map(function(line, index) {

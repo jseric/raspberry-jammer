@@ -7,6 +7,7 @@
 import React, { Component } from 'react';
 import { Jumbotron, Button } from 'react-bootstrap';
 
+// Import stylesheet
 import './styles/Home.css';
 
 // Home component

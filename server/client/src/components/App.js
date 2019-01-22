@@ -7,11 +7,13 @@
 import React, { Component } 	  from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
 
+// Import components
 import Header from './Header';
 import Footer from './Footer';
 import Home	  from './Home';
 import Dashboard from './Dashboard';
 
+// Import stylesheet
 import './styles/App.css';
 
 // App component

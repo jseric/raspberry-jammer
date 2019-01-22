@@ -6,6 +6,7 @@
 // Import modules
 import React, { Component } from 'react';
 
+// Import stylesheet
 import './styles/Footer.css';
 
 // Footer component

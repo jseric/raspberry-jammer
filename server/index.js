@@ -6,19 +6,17 @@
 // Module imports
 const express = require('express');
 
+// Import keys
 const keys = require('./config/keys');
 
 // Create a new express app and define port
 const app = express();
 const PORT = 5000;
 
-const is_rpi = true;
-
 // Import routes
 require('./routes/jammerRoutes')(app);
 
 // Redirect unhandled requests to client
-
 let client_base_url = '';
 
 if (!keys.isRPI)
@@ -26,7 +24,7 @@ if (!keys.isRPI)
 else
 	client_base_url = 'http://10.3.141.1:3000';
 
-// Redirection routes for client
+// Redirection routes intended for client
 // Path: /*
 // Note: every route that is not previously defined
 // Type: GET

@@ -7,6 +7,7 @@
 import React, { Component } from 'react';
 import { Navbar, NavItem }  from 'react-materialize';
 
+// Import stylesheet
 import './styles/Header.css';
 
 // Header component

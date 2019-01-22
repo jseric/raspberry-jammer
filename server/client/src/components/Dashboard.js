@@ -8,8 +8,10 @@ import React, { Component } from 'react';
 import { Jumbotron, Button } from 'react-bootstrap';
 import axios from 'axios';
 
+// Import components
 import CodeBlock from './CodeBlock';
 
+// Import stylesheet
 import './styles/Dashboard.css';
 
 // Dashboard component
@@ -20,6 +22,7 @@ class Dashboard extends Component {
 		this.startAttack = this.startAttack.bind(this);
 		this.stopAttack  = this.stopAttack.bind(this);
 
+		// Set initial state
 		this.state = {
 			isAttackRunning: false
 		};
@@ -68,16 +71,20 @@ class Dashboard extends Component {
 	} // renderStopButton()
 
 	async startAttack() {
+		// Check if attack is already running
 		if (this.state.isAttackRunning) {
 			console.log("client_warning:attack_already_in_progress");
 			return;
 		}
 
+		// Change state
 		this.setState({
 			isAttackRunning: true
 		});
 
 		let res;
+
+		// Send GET request to /api/jammer/start
 		await axios.get('/api/jammer/start')
     	.then(response => res = response.data);
 
@@ -90,16 +97,20 @@ class Dashboard extends Component {
 	} // startAttack()
 
 	async stopAttack() {
+		// Check if attack is already running
 		if (!this.state.isAttackRunning) {
 			console.log('client_warning:attack_not_in_progress');
 			return;
 		}
 
+		// Change state
 		this.setState({
 			isAttackRunning: false
 		});
 
 		let res;
+
+		// Send GET request to /api/jammer/stop
 		await axios.get('/api/jammer/stop')
     	.then(response => res = response.data);
 
