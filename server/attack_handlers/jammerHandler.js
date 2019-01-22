@@ -54,26 +54,51 @@ module.exports = {
 
 		jammerScript.stdout.on(
 			'data', function(data) {
-				output += data;
-				console.log(output);
 
-				let i = console_output.data.length;
+				output = data;
+
+				let line_start = 0;
+				let line_end = 0;
+
+				for (line_end = 0; line_end < output.length; line_end++) {
+					if (output[line_end] == '[') {
+						let log_lines = console_output.data.length;
+
+						console_output.data.push('stdout: ');
+		    		console_output.data[log_lines] += output.substr(line_start, line_end - line_start);
+
+						line_start = line_end;
+					}
+				}
+
+				/*
+				let log_lines = console_output.data.length;
 
 				console_output.data.push('stdout: ');
-    		console_output.data[i] += data;
+    		console_output.data[log_lines] += data;
+				*/
 			} // function(data)
 		); // jammerScript.stdout.on
 
 
 		jammerScript.stderr.on(
 			'data', function(data) {
-				output += data;
-				console.log(output);
 
-				let i = console_output.data.length;
+				output = data;
 
-				console_output.data.push('stderr: ');
-    		console_output.data[i] += data;
+				let line_start = 0;
+				let line_end = 0;
+
+				for (line_end = 0; line_end < output.length; line_end++) {
+					if (output[line_end] == '[') {
+						let log_lines = console_output.data.length;
+
+						console_output.data.push('stderr: ');
+		    		console_output.data[log_lines] += output.substr(line_start, line_end - line_start);
+
+						line_start = line_end;
+					}
+				}
 			} // function(data)
 		); // jammerScript.stdout.on
 	}, // startJammer: ()
