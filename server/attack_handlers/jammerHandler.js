@@ -57,35 +57,9 @@ module.exports = {
 				output = '';
 				output += data;
 
-				let line_start = 0;
-				let line_end = 0;
-
-				// Add break lines
-				for (line_end = 0; line_end < output.length; line_end++) {
-					if (output[line_end] == '[') {
-						let log_lines = console_output.data.length;
-
-						console_output.data.push('stdout: ');
-		    		console_output.data[log_lines] += output.substr(line_start, line_end - line_start);
-
-						line_start = line_end;
-					}
-				}
-
-				// Add remaining data
 				let log_lines = console_output.data.length;
-
 				console_output.data.push('stdout: ');
-				console_output.data[log_lines] += output.substr(line_start, line_end - line_start);
-
-				line_start = line_end;
-
-				/*
-				let log_lines = console_output.data.length;
-
-				console_output.data.push('stdout: ');
-    		console_output.data[log_lines] += data;
-				*/
+				console_output.data[log_lines] += output;
 			} // function(data)
 		); // jammerScript.stdout.on
 
@@ -95,29 +69,9 @@ module.exports = {
 				output = '';
 				output += data;
 
-				let line_start = 0;
-				let line_end = 0;
-
-				// Add break lines
-				for (line_end = 0; line_end < output.length; line_end++) {
-					if (output[line_end] == '[') {
-						let log_lines = console_output.data.length;
-
-						console_output.data.push('stderr: ');
-		    		console_output.data[log_lines] += output.substr(line_start, line_end - line_start);
-
-						line_start = line_end;
-					}
-				}
-
-				// Add remaining data
 				let log_lines = console_output.data.length;
-
 				console_output.data.push('stderr: ');
-				console_output.data[log_lines] += output.substr(line_start, line_end - line_start);
-
-				line_start = line_end;
-
+				console_output.data[log_lines] += output;
 			} // function(data)
 		); // jammerScript.stdout.on
 	}, // startJammer: ()
@@ -132,10 +86,6 @@ module.exports = {
 	}, // stopJammer: ()
 
 	getJammingLog: () => {
-
-		console.log('isRunning = ' + isRunning);
-		console.log('console_output = ' + console_output);
-
 		if (!isRunning)
 			return 'attack_not_in_progress';
 
