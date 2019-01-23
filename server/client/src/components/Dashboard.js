@@ -141,9 +141,7 @@ class Dashboard extends Component {
             { this.renderStopButton()  }
           </p>
 
-          <CodeBlock isAttackRunning={this.state.isAttackRunning}/>
-
-          <img src="./img/home_hacker.jpg" alt="Hacker" className="img-class" />
+          <CodeBlock isAttackRunning={this.state.isAttackRunning} />
         </Jumbotron>
       </div>
 		); // return
