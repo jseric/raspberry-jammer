@@ -10,7 +10,7 @@ This is an application for attacking WiFi networks using Raspberry Pi (RPI) 3. T
 - A USB WiFi card with monitor mode
 - SD card (with min. 16 GB of memory)
 
-## What you will need (Software on Raspberry Pi):
+## What you will need (Additional Software on Raspberry Pi):
 - [Raspbian OS](https://www.raspberrypi.org/downloads/)
 - [Python](https://www.python.org/) & [Scapy](https://scapy.readthedocs.io/en/latest/index.html) (Both should come preinstalled on Raspbian OS)
 - [NPM & NodeJS](https://www.instructables.com/id/Install-Nodejs-and-Npm-on-Raspberry-Pi/)
