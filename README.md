@@ -7,7 +7,7 @@ This is an application for attacking WiFi networks using Raspberry Pi (RPI) 3. T
 
 ## What you will need (Hardware):
 - A raspberry Pi with a built in wireless network card (for example, Raspberry Pi 3B)
-- A USB WiFi card
+- A USB WiFi card with monitor mode
 - SD card (with min. 16 GB of memory)
 
 ## What you will need (Software on Raspberry Pi):
